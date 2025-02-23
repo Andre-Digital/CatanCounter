@@ -64,7 +64,7 @@ data class CatanResourceItem(
         _count.update { count -> (count - 1).coerceAtLeast(1) }
     }
 
-    fun incrementCount() {
+    fun incremenintCount() {
         _count.update { count -> count + 1 }
     }
 
