@@ -2,6 +2,7 @@ package com.andredigital.catancounter
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -10,9 +11,11 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.sharp.Add
+import androidx.compose.material.icons.sharp.Clear
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -57,10 +60,20 @@ fun App(
                     .background(color = Color(0xFF121212))
                     .fillMaxSize(),
                 floatingActionButton = {
-                    FloatingActionButton(
-                        onClick = { isAddDialogShowing = true }
-                    ) {
-                        Icon(imageVector = Icons.Sharp.Add, contentDescription = null)
+                    Row {
+                        if (statesList.isNotEmpty()) {
+                            FloatingActionButton(
+                                onClick = { viewModel.clearResources() },
+                                modifier = Modifier.padding(end = 8.dp)
+                            ) {
+                                Text("Clear")
+                            }
+                        }
+                        FloatingActionButton(
+                            onClick = { isAddDialogShowing = true }
+                        ) {
+                            Icon(imageVector = Icons.Sharp.Add, contentDescription = null)
+                        }
                     }
                 }
             ) { innerPadding ->

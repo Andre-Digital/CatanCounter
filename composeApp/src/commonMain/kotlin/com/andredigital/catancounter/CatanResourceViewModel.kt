@@ -53,7 +53,12 @@ class CatanResourceViewModel: ViewModel() {
     fun addResource(resource: CatanResourceItem) {
         _cardStateFlow.update { map ->
             val resourceMap = map.toMutableMap()
-            resourceMap[resource.getKey()] = resource
+            val foundResource = resourceMap[resource.getKey()]
+            if (foundResource != null) {
+                foundResource.incrementCount()
+            } else {
+                resourceMap[resource.getKey()] = resource
+            }
             resourceMap
         }
     }
@@ -64,6 +69,10 @@ class CatanResourceViewModel: ViewModel() {
             resourceMap.remove(key)
             resourceMap
         }
+    }
+
+    fun clearResources() {
+        _cardStateFlow.value = mutableMapOf()
     }
 
     fun toCardStates(): List<CatanCardState> = cardStateFlow.value.values.toList()

@@ -27,9 +27,9 @@ import androidx.compose.material.LocalContentColor
 import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.sharp.Add
+import androidx.compose.material.icons.sharp.Close
 import androidx.compose.material.icons.sharp.Delete
 import androidx.compose.material.icons.sharp.Remove
-import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -37,7 +37,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -68,7 +67,6 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun CatanCell(
@@ -208,6 +206,18 @@ fun CatanResourcePicker(
             val values = remember { (2..12).toList() }
             val valuesPickerState = rememberPickerState()
 
+
+            IconButton(
+                onClick = onDismiss,
+                modifier = Modifier.align(Alignment.Start)
+            ) {
+                Icon(
+                    imageVector = Icons.Sharp.Close,
+                    tint = Color.White,
+                    contentDescription = null
+                )
+            }
+
             Picker(
                 state = valuesPickerState,
                 items = values,
@@ -216,7 +226,7 @@ fun CatanResourcePicker(
                     .fillMaxWidth(0.5f),
                 textModifier = Modifier.padding(8.dp),
                 textStyle = TextStyle(fontSize = 32.sp),
-                dividerColor = Color(0xFFE8E8E8)
+                dividerColor = Color(0xFFE8E8E8),
             )
 
             LazyVerticalGrid(
