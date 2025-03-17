@@ -17,6 +17,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.contentColorFor
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.sharp.Add
 import androidx.compose.material.icons.sharp.Clear
@@ -31,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import de.jensklingenberg.ktorfit.Ktorfit
 import de.jensklingenberg.ktorfit.internal.ClassProvider
@@ -105,6 +107,25 @@ fun App(
                                 state = state,
                                 onDeleteItem = viewModel::removeResource,
                                 onItemChanged = viewModel::storeCountUpdates
+                            )
+                        }
+                    }
+
+                    if (statesList.isEmpty()) {
+                        Column(
+                            modifier = Modifier.align(Alignment.Center),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = "No Resources Added",
+                                color = Color.White,
+                                fontSize = 28.sp,
+                                modifier = Modifier.padding(bottom = 8.dp)
+                            )
+                            Text(
+                                text = "Press '+' To Add Resources",
+                                color = Color.LightGray,
+                                fontSize = 18.sp
                             )
                         }
                     }
