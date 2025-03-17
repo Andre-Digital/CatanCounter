@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -96,7 +97,8 @@ fun App(
                         .fillMaxSize()
                 ) {
                     LazyVerticalGrid(
-                        columns = GridCells.Fixed(count = 1)
+                        columns = GridCells.Fixed(count = 1),
+                        contentPadding = PaddingValues(bottom = 80.dp),
                     ) {
                         items(statesList, key = { state -> state.rollNumber }) { state ->
                             CatanCell(
